@@ -1,32 +1,34 @@
-const path = require('path');
+// Use 'import' instead of 'require' in ES Module environments
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-module.exports = {
-  entry: './src/code.ts',
+export default {
+  mode: 'development',
+  entry: {
+    code: './src/code.ts',
+    ui: './src/ui.ts'  // Assuming UI logic is in ui.ts
+  },
+  output: {
+    path: path.resolve('dist'),
+    filename: '[name].js'
+  },
   module: {
     rules: [
       {
         test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-            options: {
-              esModule: false
-            }
-          }
-        ]
       }
     ]
   },
   resolve: {
     extensions: ['.ts', '.js']
   },
-  output: {
-    filename: 'code.js',
-    path: path.resolve(__dirname, 'src', 'dist')
-  }
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/ui.html',
+      filename: 'ui.html',
+      chunks: ['ui']
+    })
+  ]
 };

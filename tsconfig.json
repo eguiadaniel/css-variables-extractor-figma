@@ -1,13 +1,8 @@
 {
-  "compilerOptions": {
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
-    "target": "ES5",
-    "lib": ["ES5", "ES2015", "DOM"],
+  "compilerOptions": { 
+   "target": "es5",
     "module": "es6",
-    "outDir": "src/dist",
+    "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
